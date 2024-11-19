@@ -8,47 +8,67 @@
 import SwiftUI
 
 struct ContentView: View {
-    let emojis = ["🥸", "😰", "😉", "😨", "☺️", "🤢", "🥹", "😌", "🙃", "😅", "😭"]
-    @State var cardCount = 4
+    static var themes = [
+        ["🥸", "😰", "😉", "😨", "☺️", "🤢", "🥹", "🙃", "😅", "😭"],
+        ["👩🏻‍🚀", "👽", "👾", "👨🏻‍🚀", "🪐", "🌏", "🌎", "🌗", "🛰️"],
+        ["🫑", "🫛", "🥕", "🫒", "🥭", "🧅", "🧄", "🫚", "🫐", "🍉", "🥬"]
+    ]
+    static var themeColors = [Color.yellow, Color.black, Color.green]
+    @State var theme: [String] = []
+    @State var themeColor = themeColors[0]
     
     var body: some View {
         VStack {
+            Text("Memorize")
+                .font(.title)
             ScrollView {
                 cards
             }
-            Spacer()
-            cardCountAdjusters
+            themeSelection
         }
         .padding()
     }
     
+    func selectTheme(index: Int) {
+        let themeCardCount = Int.random(in: 1..<ContentView.themes[index].count)
+        theme = Array(ContentView.themes[index][0...themeCardCount])
+        theme = theme + theme
+        theme.shuffle()
+        themeColor = ContentView.themeColors[index]
+    }
+    
+    var themeSelection: some View {
+        HStack {
+            Spacer()
+            themeButton(text: "Emojis", symbol: "face.smiling", theme: 0)
+            themeButton(text: "Space", symbol: "airplane.departure", theme: 1)
+            themeButton(text: "Vegies", symbol: "carrot", theme: 2)
+            Spacer()
+        }
+    }
+    
+    func themeButton(text: String, symbol: String, theme themeIndex: Int) -> some View {
+        Button(action: {
+            selectTheme(index: themeIndex)
+        }, label: {
+            VStack {
+                Text(text).font(.subheadline)
+                Image(systemName: symbol).imageScale(.large)
+            }
+        })
+    }
+    
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
-            ForEach(0..<cardCount, id: \.self) { index in
-                CardView(content: emojis[index])
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+            ForEach(theme.indices, id: \.self) { index in
+                CardView(content: theme[index])
             }
         }
         .imageScale(.large)
-        .foregroundColor(.orange)
-    }
-    
-    var cardCountAdjusters: some View {
-        HStack {
-            cardCountAdjuster(by: -1, symbol: "minus.square.fill")
-            Spacer()
-            cardCountAdjuster(by: 1, symbol: "plus.square.fill.on.square.fill")
-        }
-    }
-    
-    func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
-        Button(action: {
-            cardCount += offset
-        }, label: {
-            Image(systemName: symbol)
-        })
-        .disabled(cardCount + offset < 1 || cardCount + offset >= emojis.count)
+        .foregroundColor(themeColor)
     }
 }
+
 #Preview {
     ContentView()
 }
