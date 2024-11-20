@@ -24,11 +24,15 @@ struct CardView: View {
             Group {
                 base.fill()
                 base.strokeBorder(gradient, lineWidth: Constants.lineWidth)
-                Text(card.content)
-                    .font(.system(size: Constants.FontSize.largest))
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(Constants.FontSize.scaleFactor)
-                    .aspectRatio(1, contentMode: .fit)
+                Pie(endAngle: Angle.degrees(240))
+                    .fill(gradient.tertiary)
+                    .overlay {
+                        Text(card.content)
+                            .font(.system(size: Constants.FontSize.largest))
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(Constants.FontSize.scaleFactor)
+                            .padding(Constants.textInset)
+                    }
                     .padding(Constants.inset)
             }
             .opacity(card.isFaceUp ? 1 : 0)
@@ -41,6 +45,7 @@ struct CardView: View {
         static let cornerRadius: CGFloat = 12
         static let lineWidth: CGFloat = 2
         static let inset: CGFloat = 5
+        static let textInset: CGFloat = 10
         struct FontSize {
             static let largest: CGFloat = 200
             static let smallest: CGFloat = 10
