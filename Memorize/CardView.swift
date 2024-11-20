@@ -19,33 +19,27 @@ struct CardView: View {
     }
     
     var body: some View {
-        ZStack {
-            let base = RoundedRectangle(cornerRadius: Constants.cornerRadius)
-            Group {
-                base.fill()
-                base.strokeBorder(gradient, lineWidth: Constants.lineWidth)
-                Pie(endAngle: Angle.degrees(240))
-                    .fill(gradient.tertiary)
-                    .overlay {
-                        Text(card.content)
-                            .font(.system(size: Constants.FontSize.largest))
-                            .multilineTextAlignment(.center)
-                            .minimumScaleFactor(Constants.FontSize.scaleFactor)
-                            .padding(Constants.textInset)
-                    }
-                    .padding(Constants.inset)
+        Pie(endAngle: Angle.degrees(240))
+            .fill(gradient)
+            .opacity(Constants.pieOpacity)
+            .overlay {
+                Text(card.content)
+                    .font(.system(size: Constants.FontSize.largest))
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(Constants.FontSize.scaleFactor)
+                    .padding(Constants.textInset)
+                    .foregroundColor(.black)
             }
-            .opacity(card.isFaceUp ? 1 : 0)
-            base.fill(gradient).opacity(card.isFaceUp ? 0 : 1)
-        }
-        .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
+            .aspectRatio(contentMode: .fit)
+            .padding(Constants.inset)
+            .cardify(isFaceUp: card.isFaceUp, gradient: gradient)
+            .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
     }
     
     private struct Constants {
-        static let cornerRadius: CGFloat = 12
-        static let lineWidth: CGFloat = 2
         static let inset: CGFloat = 5
         static let textInset: CGFloat = 10
+        static let pieOpacity: CGFloat = 0.35
         struct FontSize {
             static let largest: CGFloat = 200
             static let smallest: CGFloat = 10
