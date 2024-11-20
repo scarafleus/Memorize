@@ -11,8 +11,6 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
-    private let aspectRatio: CGFloat = 2/3
-    
     var body: some View {
         cards
             .animation(.default, value: viewModel.cards)
@@ -22,9 +20,9 @@ struct EmojiMemoryGameView: View {
     }
     
     private var cards: some View {
-        AspectVGrid(items: viewModel.cards, aspectRatio: aspectRatio) { card in
+        AspectVGrid(items: viewModel.cards, aspectRatio: Constants.aspectRatio) { card in
             CardView(card, gradient: viewModel.gradient)
-                .padding(4)
+                .padding(Constants.cardPadding)
                 .onTapGesture {
                     viewModel.choose(card)
                 }
@@ -49,8 +47,14 @@ struct EmojiMemoryGameView: View {
             .font(.largeTitle)
             .padding(.horizontal)
             .background(
-                RoundedRectangle(cornerRadius: 6)
+                RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .fill(viewModel.gradient))
+    }
+    
+    private struct Constants {
+        static let aspectRatio: CGFloat = 2/3
+        static let cornerRadius: CGFloat = 6
+        static let cardPadding: CGFloat = 4
     }
 }
 
