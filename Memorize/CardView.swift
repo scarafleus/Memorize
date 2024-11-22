@@ -50,9 +50,9 @@ struct CardView: View {
 
 #Preview {
     HStack {
-        CardView(CardView.Card(content: "🐛", id: "1"), gradient: Gradient(colors: [.red, .blue]))
-        CardView(CardView.Card(isFaceUp: true, content: "🐛", id: "2"), gradient: Gradient(colors: [.red, .blue]))
-        CardView(CardView.Card(isFaceUp: true, content: "This is a very long string and I hope it fits!", id: "3"), gradient: Gradient(colors: [.red, .blue]))
+        CardView(CardView.Card(content: "🐛", pair: 0, id: "1"), gradient: Gradient(colors: [.red, .blue]))
+        CardView(CardView.Card(isFaceUp: true, content: "🐛", pair: 0, id: "2"), gradient: Gradient(colors: [.red, .blue]))
+        CardView(CardView.Card(isFaceUp: true, content: "This is a very long string and I hope it fits!", pair: 0, id: "3"), gradient: Gradient(colors: [.red, .blue]))
     }
     .padding()
 }

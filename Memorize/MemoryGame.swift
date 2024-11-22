@@ -13,13 +13,16 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     
     var score: Int = 0
     
-    init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
+    init(numberOfPairsOfCards: Int, totalNumberOfPairs: Int, cardContentFactory: (Int) -> CardContent) {
         cards = []
-        for pairIndex in 0..<max(2, numberOfPairsOfCards) {
-            let content = cardContentFactory(pairIndex)
+        let indexMap = Array(0..<totalNumberOfPairs).shuffled()
+        for initialPairIndex in 0..<max(2, numberOfPairsOfCards) {
+            let pairIndex = indexMap[initialPairIndex]
+            let contentA = cardContentFactory(2*pairIndex)
+            let contentB = cardContentFactory(2*pairIndex+1)
             cards += [
-                Card(content: content, id: "\(pairIndex+1)a"),
-                Card(content: content, id: "\(pairIndex+1)b")
+                Card(content: contentA, pair: pairIndex, id: "\(pairIndex+1)a"),
+                Card(content: contentB, pair: pairIndex, id: "\(pairIndex+1)b")
             ]
         }
         cards.shuffle()
@@ -44,7 +47,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
     
     private mutating func checkForMatch(index1: Int, index2: Int) {
-        if cards[index1].content == cards[index2].content {
+        if cards[index1].pair == cards[index2].pair {
             cards[index1].isMatched = true
             cards[index2].isMatched = true
             score += 2
@@ -66,6 +69,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var wasSeen = false
         let content: CardContent
         
+        var pair: Int
         var id: String
         var debugDescription: String {
             "\(content):\(id), IsFaceUp: \(isFaceUp), IsMatched: \(isMatched)"
