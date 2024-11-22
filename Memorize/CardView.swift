@@ -29,6 +29,8 @@ struct CardView: View {
                     .minimumScaleFactor(Constants.FontSize.scaleFactor)
                     .padding(Constants.textInset)
                     .foregroundColor(.black)
+                    .rotationEffect(card.isMatched ? Angle.degrees(360) : Angle.zero)
+                    .animation(.easeInOut(duration: 0.7), value: card.isMatched)
             }
             .aspectRatio(contentMode: .fit)
             .padding(Constants.inset)

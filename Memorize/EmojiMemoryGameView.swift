@@ -24,7 +24,9 @@ struct EmojiMemoryGameView: View {
             CardView(card, gradient: viewModel.gradient)
                 .padding(Constants.cardPadding)
                 .onTapGesture {
-                    viewModel.choose(card)
+                    withAnimation(.snappy) {
+                        viewModel.choose(card)
+                    }
                 }
         }
     }
@@ -49,6 +51,9 @@ struct EmojiMemoryGameView: View {
             .background(
                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .fill(viewModel.gradient))
+            .transaction { transaction in
+                transaction.animation = nil
+            }
     }
     
     private struct Constants {
