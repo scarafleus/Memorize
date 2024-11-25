@@ -18,7 +18,7 @@ class EmojiMemoryGame: ObservableObject {
             cardContentFactory: theme.contentFactory
         );
     }
-    private static var initialTheme = MemoryGameThemes.Kanji
+    private static var initialTheme = MemoryGameThemes.Temporaladverbien
     
     private var theme = initialTheme
     var gradient: Gradient { return theme.gradient }
@@ -45,6 +45,7 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     func newGame() {
+        theme = [MemoryGameThemes.Temporaladverbien, MemoryGameThemes.Verben, MemoryGameThemes.Kanji, MemoryGameThemes.Katakana, MemoryGameThemes.Hiragana].shuffled().first!
         model = EmojiMemoryGame.createMemoryGame(theme: theme)
     }
 }

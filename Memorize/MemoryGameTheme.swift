@@ -117,4 +117,16 @@ struct MemoryGameThemes {
         gradient: Gradient(colors: [.blue, .white, .red, .white, .blue]),
         content: [("Japan", "日本"), ("Mensch", "人"), ("Laden", "屋"), ("Was", "何"), ("England", "英"), ("Sprache", "語"), ("Groß", "大"), ("Lernen", "学"), ("Leben", "生"), ("Kind", "子"), ("Sonne / Tag", "日"), ("Wochentag", "曜日"), ("Sonntag", "日曜日"), ("Samstag", "土曜日"), ("Erde", "土"), ("Osten", "東"), ("Hauptstadt", "京"), ("Mitte", "中"), ("Land", "国")]
     )
+    static let Verben = VocabMemoryGameTheme(
+        name: "Verben",
+        numberOfPairsOfCards: 10,
+        gradient: Gradient(colors: [.green, .white, .blue, .white, .green]),
+        content: [("Sein", "です"), ("Machen", "します"), ("Sehen", "みます"), ("Gehen", "いきます"), ("Kommen", "きます"), ("Schreiben", "かきます"), ("Lesen", "よみます"), ("Lernen", "べんきょう"), ("Hören", "ききます"), ("Essen", "たべます"), ("Trinken", "のみます"), ("Kaufen", "かいます")]
+    )
+    static let Temporaladverbien = VocabMemoryGameTheme(
+        name: "Temporaladverbien",
+        numberOfPairsOfCards: 10,
+        gradient: Gradient(colors: [.black, .white, .blue]),
+        content: [("Morgen", "あした"), ("Nächste Woche", "らいしゅう"), ("Jetzt", "いま"), ("Gestern", "きのう"), ("Vorgestern", "おととい"), ("Dann / Danach", "それから"), ("Heute", "きょう"), ("Mittag", "ひる"), ("Übermorgen", "あさって"), ("Nächstes Mal", "こんど"), ("Gleich / Sofort", "すぐ")]
+    )
 }
