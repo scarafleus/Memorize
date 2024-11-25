@@ -18,12 +18,13 @@ class EmojiMemoryGame: ObservableObject {
             cardContentFactory: theme.contentFactory
         );
     }
+    private static var initialTheme = MemoryGameThemes.Kanji
     
-    private var theme = MemoryGameThemes.Katakana
+    private var theme = initialTheme
     var gradient: Gradient { return theme.gradient }
     var name: String { return theme.name }
     
-    @Published private var model = createMemoryGame(theme: MemoryGameThemes.Katakana)
+    @Published private var model = createMemoryGame(theme: initialTheme)
     
     var cards: [Card] {
         return model.cards

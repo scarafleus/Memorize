@@ -111,4 +111,10 @@ struct MemoryGameThemes {
         gradient: Gradient(colors: [.black, .white, .red, .white, .black]),
         content: [("a", "ア"), ("i", "イ"), ("u", "ウ"), ("e", "エ"), ("o", "オ"), ("ka", "カ"), ("ki", "キ"), ("ku", "ク"), ("ke", "ケ"), ("ko", "コ"), ("sa", "サ"), ("shi", "シ"), ("su", "ス"), ("se", "セ"), ("so", "ソ"), ("ta", "タ"), ("chi", "チ"), ("tsu", "ツ"), ("te", "テ"), ("to", "ト"), ("na", "ナ"), ("ni", "ニ"), ("nu", "ヌ"), ("ne", "ネ"), ("no", "ノ"), ("ha", "ハ"), ("hi", "ヒ"), ("fu", "フ"), ("he", "ヘ"), ("ho", "ホ"), ("ma", "マ"), ("mi", "ミ"), ("mu", "ム"), ("me", "メ"), ("mo", "モ"), ("ya", "ヤ"), ("yu", "ユ"), ("yo", "ヨ"), ("ra", "ラ"), ("ri", "リ"), ("ru", "ル"), ("re", "レ"), ("ro", "ロ"), ("wa", "ワ"), ("wo", "ヲ"), ("n", "ン")]
     )
+    static let Kanji = VocabMemoryGameTheme(
+        name: "Kanji",
+        numberOfPairsOfCards: 10,
+        gradient: Gradient(colors: [.blue, .white, .red, .white, .blue]),
+        content: [("Japan", "日本"), ("Mensch", "人"), ("Laden", "屋"), ("Was", "何"), ("England", "英"), ("Sprache", "語"), ("Groß", "大"), ("Lernen", "学"), ("Leben", "生"), ("Kind", "子"), ("Sonne / Tag", "日"), ("Wochentag", "曜日"), ("Sonntag", "日曜日"), ("Samstag", "土曜日"), ("Erde", "土"), ("Osten", "東"), ("Hauptstadt", "京"), ("Mitte", "中"), ("Land", "国")]
+    )
 }
